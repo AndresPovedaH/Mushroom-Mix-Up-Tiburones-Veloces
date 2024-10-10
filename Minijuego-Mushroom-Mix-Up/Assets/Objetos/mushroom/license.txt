@@ -1,0 +1,8 @@
+Model Information:
+* title:	mushroom
+* source:	https://sketchfab.com/3d-models/mushroom-9b99025b4cca41f18c4e2c724f05a0ae
+* author:	Astro catman K (https://sketchfab.com/AstrocatamanK)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
