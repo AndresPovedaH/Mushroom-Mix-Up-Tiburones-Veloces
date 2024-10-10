@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class MenuInicial : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Jugar()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
