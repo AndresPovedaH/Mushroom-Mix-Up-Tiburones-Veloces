@@ -16,6 +16,8 @@ public class MushroomManager : MonoBehaviour
     public GameObject gameOverUI; // UI que aparece cuando el juego termina (si tienes una).
 
     private Vector3[] initialPositions; // Posiciones originales de los hongos.
+    private bool isGameOver = false; // Variable que indica si el juego ha terminado.
+    private Color originalColor; // Color original del hongo seguro.
 
     void Start()
     {
@@ -42,8 +44,11 @@ public class MushroomManager : MonoBehaviour
         // Selecciona un nuevo color seguro.
         SetRandomSafeColor();
 
+        // Cambia el color del hongo seguro.
+        StartCoroutine(BlinkSafeMushroom());
+
         // Baja los hongos no seguros después de un corto retraso.
-        Invoke(nameof(UpdateMushrooms), 1f);
+        Invoke(nameof(UpdateMushrooms), 1.5f);
     }
 
     public void SetRandomSafeColor()
@@ -52,8 +57,46 @@ public class MushroomManager : MonoBehaviour
         Debug.Log($"Nuevo color seguro seleccionado: {safeColor}");
     }
 
+    // Corrutina que hace que el hongo seguro parpadee.
+    private System.Collections.IEnumerator BlinkSafeMushroom()
+    {
+        bool isBlinking = true;
+
+        // Obtén el hongo seguro y su color original.
+        GameObject safeMushroom = GetSafeMushroom();
+        Renderer mushroomRenderer = safeMushroom.GetComponent<Renderer>();
+        originalColor = mushroomRenderer.material.color;
+
+        while (isBlinking)
+        {
+            // Cambia el color a verde brillante.
+            mushroomRenderer.material.color = Color.green;
+            yield return new WaitForSeconds(0.5f);
+
+            // Vuelve al color original.
+            mushroomRenderer.material.color = originalColor;
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    // Devuelve el hongo seguro basado en el color.
+    private GameObject GetSafeMushroom()
+    {
+        foreach (GameObject mushroom in mushrooms)
+        {
+            if (mushroom.CompareTag(safeColor))
+            {
+                return mushroom;
+            }
+        }
+
+        return null;
+    }
+
     public void UpdateMushrooms()
     {
+        if (isGameOver) return; // Si el juego ha terminado, no hacemos nada.
+
         foreach (GameObject mushroom in mushrooms)
         {
             if (mushroom.CompareTag(safeColor))
@@ -88,17 +131,7 @@ public class MushroomManager : MonoBehaviour
 
     private void CheckPlayerPosition()
     {
-        GameObject safeMushroom = null;
-
-        // Encuentra el hongo seguro.
-        foreach (GameObject mushroom in mushrooms)
-        {
-            if (mushroom.CompareTag(safeColor))
-            {
-                safeMushroom = mushroom;
-                break;
-            }
-        }
+        GameObject safeMushroom = GetSafeMushroom();
 
         if (safeMushroom == null)
         {
@@ -135,6 +168,8 @@ public class MushroomManager : MonoBehaviour
 
     private void ResetMushrooms()
     {
+        if (isGameOver) return; // Si el juego ha terminado, no hacemos nada.
+
         Debug.Log("Reiniciando posición de los hongos...");
 
         // Detiene todas las corrutinas activas para evitar conflictos.
@@ -189,6 +224,10 @@ public class MushroomManager : MonoBehaviour
     // Finaliza el juego (puedes agregar más lógica aquí).
     private void EndGame()
     {
+        if (isGameOver) return; // Si el juego ya está terminado, no hacemos nada.
+
+        isGameOver = true; // Establece que el juego ha terminado.
+
         // Aquí puedes hacer que aparezca una UI de fin de juego o realizar cualquier otra acción.
         if (gameOverUI != null)
         {
@@ -196,6 +235,6 @@ public class MushroomManager : MonoBehaviour
         }
 
         // Detén el juego.
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; // Detiene el tiempo del juego (puedes usar esto para pausar el juego).
     }
 }
