@@ -132,7 +132,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_Name
-      value: Hongo verde
+      value: Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
+      propertyPath: m_TagString
+      value: Green
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_LocalScale.x
@@ -222,7 +226,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28, y: 0.36, z: 0.26}
+  m_Size: {x: 0.28, y: 0.36, z: 0.28}
   m_Center: {x: 0, y: 0.18571588, z: 0}
 --- !u!1001 &179683235
 PrefabInstance:
@@ -234,11 +238,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_Name
-      value: Hongo negro
+      value: Black
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_TagString
-      value: Hongo negro
+      value: Black
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_LocalScale.x
@@ -328,7 +332,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28, y: 0.36, z: 0.26}
+  m_Size: {x: 0.28, y: 0.36, z: 0.28}
   m_Center: {x: 0, y: 0.18571588, z: 0}
 --- !u!1001 &376132232
 PrefabInstance:
@@ -340,7 +344,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_Name
-      value: Hongo amarillo
+      value: Yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
+      propertyPath: m_TagString
+      value: Yellow
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_LocalScale.x
@@ -430,7 +438,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28, y: 0.36, z: 0.26}
+  m_Size: {x: 0.28, y: 0.36, z: 0.28}
   m_Center: {x: 0, y: 0.18571588, z: 0}
 --- !u!1001 &418593712
 PrefabInstance:
@@ -511,7 +519,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_Name
-      value: Hongo rojo
+      value: Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
+      propertyPath: m_TagString
+      value: Red
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_LocalScale.x
@@ -601,7 +613,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28, y: 0.36, z: 0.26}
+  m_Size: {x: 0.28, y: 0.36, z: 0.28}
   m_Center: {x: 0, y: 0.18571588, z: 0}
 --- !u!1001 &519779621
 PrefabInstance:
@@ -613,7 +625,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_Name
-      value: Hongo azul oscuro
+      value: Blackblue
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
+      propertyPath: m_TagString
+      value: Blackblue
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_LocalScale.x
@@ -703,7 +719,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28, y: 0.36, z: 0.26}
+  m_Size: {x: 0.28, y: 0.36, z: 0.28}
   m_Center: {x: 0, y: 0.18571588, z: 0}
 --- !u!1 &731950706
 GameObject:
@@ -833,7 +849,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_Name
-      value: Hongo principal
+      value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_LocalScale.x
@@ -898,6 +914,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       insertIndex: -1
       addedObject: {fileID: 938168642}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 938168643}
   m_SourcePrefab: {fileID: 100100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
 --- !u!1 &938168641 stripped
 GameObject:
@@ -925,6 +944,32 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.33236417, y: 0.3890732, z: 0.33236417}
   m_Center: {x: 0, y: 0.18571588, z: 0}
+--- !u!114 &938168643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938168641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781b34a19306afc48adeb98fc6a8ad80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mushrooms:
+  - {fileID: 179683236}
+  - {fileID: 1553911984}
+  - {fileID: 519779622}
+  - {fileID: 1937185627}
+  - {fileID: 376132233}
+  - {fileID: 422273429}
+  - {fileID: 53271214}
+  safeColor: 
+  dropSpeed: 0.3
+  riseSpeed: 0.3
+  resetDelay: 8
+  player: {fileID: 1155304055}
+  roundDelay: 5
 --- !u!1 &1098131858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,6 +1272,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &1155304055 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ecca765d7e386f74ba2025d519828ce7, type: 3}
+  m_PrefabInstance: {fileID: 1169685668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1155304056
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155304050}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1169685668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1292,6 +1369,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecca765d7e386f74ba2025d519828ce7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1155304054}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecca765d7e386f74ba2025d519828ce7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1155304056}
   m_SourcePrefab: {fileID: 100100000, guid: ecca765d7e386f74ba2025d519828ce7, type: 3}
 --- !u!1001 &1553911983
 PrefabInstance:
@@ -1303,7 +1383,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_Name
-      value: Hongo azul claro
+      value: Lightblue
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
+      propertyPath: m_TagString
+      value: Lightblue
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_LocalScale.x
@@ -1393,7 +1477,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28, y: 0.36, z: 0.26}
+  m_Size: {x: 0.28, y: 0.36, z: 0.28}
   m_Center: {x: 0, y: 0.18571588, z: 0}
 --- !u!1 &1885744226
 GameObject:
@@ -1429,7 +1513,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
@@ -1511,7 +1595,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_Name
-      value: Hongo rosa
+      value: Pink
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
+      propertyPath: m_TagString
+      value: Pink
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ce6f7e454178594fa964426a078b449, type: 3}
       propertyPath: m_LocalScale.x
@@ -1601,7 +1689,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28, y: 0.36, z: 0.26}
+  m_Size: {x: 0.28, y: 0.36, z: 0.28}
   m_Center: {x: 0, y: 0.18571588, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1615,8 +1703,8 @@ SceneRoots:
   - {fileID: 1937185626}
   - {fileID: 376132232}
   - {fileID: 422273428}
-  - {fileID: 938168640}
   - {fileID: 53271213}
+  - {fileID: 938168640}
   - {fileID: 1885744230}
   - {fileID: 418593712}
   - {fileID: 1169685668}
