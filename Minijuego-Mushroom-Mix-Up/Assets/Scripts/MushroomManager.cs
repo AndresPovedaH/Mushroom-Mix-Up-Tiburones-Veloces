@@ -12,6 +12,8 @@ public class MushroomManager : MonoBehaviour
     public float resetDelay = 2f; // Tiempo antes de que los hongos vuelvan a subir.
     public Transform player; // Referencia al jugador.
     public float roundDelay = 3f; // Retraso entre rondas para asegurar que la animación termine.
+    public GameObject water; // El objeto que representa el agua.
+    public GameObject gameOverUI; // UI que aparece cuando el juego termina (si tienes una).
 
     private Vector3[] initialPositions; // Posiciones originales de los hongos.
 
@@ -113,7 +115,7 @@ public class MushroomManager : MonoBehaviour
         else
         {
             Debug.Log("El jugador ha caído al agua. Fin del juego.");
-            // Aquí puedes implementar lógica para detener el juego o reiniciarlo.
+            EndGame(); // Llama a la función para finalizar el juego.
         }
     }
 
@@ -171,5 +173,29 @@ public class MushroomManager : MonoBehaviour
 
         // Inicia la siguiente ronda después del retraso.
         StartNextRound();
+    }
+
+    // Detecta cuando el jugador toca el agua.
+    private void OnTriggerEnter(Collider other)
+    {
+        // Verifica si el objeto con el que el jugador colisiona es el agua.
+        if (other.CompareTag("Water"))
+        {
+            Debug.Log("¡El jugador tocó el agua! Fin del juego.");
+            EndGame(); // Finaliza el juego.
+        }
+    }
+
+    // Finaliza el juego (puedes agregar más lógica aquí).
+    private void EndGame()
+    {
+        // Aquí puedes hacer que aparezca una UI de fin de juego o realizar cualquier otra acción.
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true); // Muestra una interfaz de fin de juego.
+        }
+
+        // Detén el juego.
+        Time.timeScale = 0f;
     }
 }

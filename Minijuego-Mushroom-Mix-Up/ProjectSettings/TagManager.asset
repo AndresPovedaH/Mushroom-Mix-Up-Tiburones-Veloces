@@ -11,6 +11,7 @@ TagManager:
   - Yellow
   - Red
   - Green
+  - Water
   layers:
   - Default
   - TransparentFX

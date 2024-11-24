@@ -970,6 +970,8 @@ MonoBehaviour:
   resetDelay: 8
   player: {fileID: 1155304055}
   roundDelay: 5
+  water: {fileID: 1885744226}
+  gameOverUI: {fileID: 0}
 --- !u!1 &1098131858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,7 +1060,7 @@ Transform:
   m_GameObject: {fileID: 1098131858}
   serializedVersion: 2
   m_LocalRotation: {x: 0.53482985, y: -0, z: -0, w: 0.84495974}
-  m_LocalPosition: {x: 0.17, y: 14.94, z: -11.92}
+  m_LocalPosition: {x: 0.17, y: 13.21, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1493,7 +1495,7 @@ GameObject:
   - component: {fileID: 1885744227}
   m_Layer: 0
   m_Name: Agua
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1579,7 +1581,7 @@ Transform:
   m_GameObject: {fileID: 1885744226}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.34782, y: -0.22, z: -5.0799837}
+  m_LocalPosition: {x: 0.34782, y: -2.98, z: -5.0799837}
   m_LocalScale: {x: 6.292457, y: 1.4773, z: 5.183472}
   m_ConstrainProportionsScale: 0
   m_Children: []
