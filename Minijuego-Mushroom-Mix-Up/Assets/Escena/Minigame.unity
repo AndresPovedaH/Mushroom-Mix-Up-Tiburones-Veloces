@@ -1013,8 +1013,10 @@ MonoBehaviour:
   scoreText: {fileID: 974519143}
   winUI: {fileID: 0}
   audioSource: {fileID: 938168647}
-  gameOverSound: {fileID: 8300000, guid: 6e561b68cac79e74e988ac6e1bf86f49, type: 3}
+  gameOverSound: {fileID: 8300000, guid: 9d87f2c6855d9f848b8bf0eeaee3211e, type: 3}
   winSound: {fileID: 8300000, guid: 4ea1e58f18f46ca42942063f6e39e582, type: 3}
+  gameOverScene: Perder
+  winScene: Ganar
 --- !u!82 &938168647
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1395,7 +1397,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8b6f47d64e051bb4ca88c279fea30a6d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.246
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1598,7 +1600,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.639
+  m_Volume: 0.903
   m_Pitch: 1
   Loop: 0
   Mute: 0

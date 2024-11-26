@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MushroomManager : MonoBehaviour
 {
@@ -22,10 +23,12 @@ public class MushroomManager : MonoBehaviour
     private bool isGameOver = false; 
     private Color originalColor; 
     private int score = 0; 
-    private float timer = 180f; 
+    private float timer = 60f; 
     public AudioSource audioSource; 
     public AudioClip gameOverSound;
     public AudioClip winSound;
+    public string gameOverScene;
+    public string winScene;     
 
     void Start()
     {
@@ -234,11 +237,21 @@ public class MushroomManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Verificar si el jugador tocó el agua.
         if (other.CompareTag("Water"))
         {
             Debug.Log("¡El jugador tocó el agua! Fin del juego.");
             EndGame();
+        }
+    }
+
+    private IEnumerator LoadSceneAfterDelay(string sceneName, float delay)
+    {
+
+        yield return new WaitForSeconds(delay);
+
+        if (!string.IsNullOrEmpty(sceneName))
+        {
+            SceneManager.LoadScene(sceneName);
         }
     }
 
@@ -247,36 +260,38 @@ public class MushroomManager : MonoBehaviour
         if (isGameOver) return;
 
         isGameOver = true;
-        Time.timeScale = 0f;
 
-        // Reproducir el sonido de fin de juego
         if (audioSource != null && gameOverSound != null)
         {
-            audioSource.PlayOneShot(gameOverSound); // Reproduce el sonido una vez
+            audioSource.PlayOneShot(gameOverSound);
         }
 
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
         }
+
+        StartCoroutine(LoadSceneAfterDelay("GameOver", 3f));
     }
+
 
     private void WinGame()
     {
         if (isGameOver) return;
 
         isGameOver = true;
-        Time.timeScale = 0f;
 
         if (audioSource != null && winSound != null)
         {
-            audioSource.PlayOneShot(winSound); // Reproduce el sonido una vez
+            audioSource.PlayOneShot(winSound);
         }
 
         if (winUI != null)
         {
             winUI.SetActive(true);
         }
+
+        StartCoroutine(LoadSceneAfterDelay("Win", 3f));
 
         Debug.Log("¡El jugador ganó el juego!");
     }
