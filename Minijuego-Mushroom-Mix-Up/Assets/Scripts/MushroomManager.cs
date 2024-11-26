@@ -1,54 +1,91 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MushroomManager : MonoBehaviour
 {
-    public GameObject[] mushrooms; // Array con todos los hongos.
-    private string[] colors = { "Black", "Lightblue", "Pink", "Yellow", "Red", "Green" }; // Colores disponibles.
-    public string safeColor; // Color seguro actual.
-    public float dropSpeed = 2f; // Velocidad de caída de los hongos.
-    public float riseSpeed = 3f; // Velocidad de subida de los hongos.
-    public float resetDelay = 2f; // Tiempo antes de que los hongos vuelvan a subir.
-    public Transform player; // Referencia al jugador.
-    public float roundDelay = 3f; // Retraso entre rondas para asegurar que la animación termine.
-    public GameObject water; // El objeto que representa el agua.
-    public GameObject gameOverUI; // UI que aparece cuando el juego termina (si tienes una).
-
-    private Vector3[] initialPositions; // Posiciones originales de los hongos.
-    private bool isGameOver = false; // Variable que indica si el juego ha terminado.
-    private Color originalColor; // Color original del hongo seguro.
+    public GameObject[] mushrooms; 
+    private string[] colors = { "Black", "Lightblue", "Pink", "Yellow", "Red", "Green" }; 
+    public string safeColor;
+    public float dropSpeed = 2f; 
+    public float riseSpeed = 3f; 
+    public float resetDelay = 2f; 
+    public Transform player; 
+    public float roundDelay = 3f; 
+    public GameObject water; 
+    public GameObject gameOverUI; 
+    public TextMeshProUGUI timerText; 
+    public TextMeshProUGUI scoreText; 
+    public GameObject winUI; 
+    private Vector3[] initialPositions; 
+    private bool isGameOver = false; 
+    private Color originalColor; 
+    private int score = 0; 
+    private float timer = 180f; 
+    public AudioSource audioSource; 
+    public AudioClip gameOverSound;
+    public AudioClip winSound;
 
     void Start()
     {
-        // Verifica que todos los hongos estén asignados.
         if (mushrooms.Length == 0)
         {
             Debug.LogError("No se han asignado hongos al array en el script MushroomManager.");
             return;
         }
 
-        // Guarda las posiciones originales de los hongos.
         initialPositions = new Vector3[mushrooms.Length];
         for (int i = 0; i < mushrooms.Length; i++)
         {
             initialPositions[i] = mushrooms[i].transform.position;
         }
 
-        // Inicia la primera ronda.
         StartNextRound();
+    }
+
+    void Update()
+    {
+        if (isGameOver) return;
+
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            timer = 0;
+            WinGame();
+        }
+
+        UpdateTimerText();
     }
 
     void StartNextRound()
     {
-        // Selecciona un nuevo color seguro.
+        score++;
+        UpdateScoreText();
+
         SetRandomSafeColor();
 
-        // Cambia el color del hongo seguro.
         StartCoroutine(BlinkSafeMushroom());
 
-        // Baja los hongos no seguros después de un corto retraso.
         Invoke(nameof(UpdateMushrooms), 1.5f);
+    }
+
+    void UpdateScoreText()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = "" + score;
+        }
+    }
+
+    void UpdateTimerText()
+    {
+        if (timerText != null)
+        {
+            int minutes = Mathf.FloorToInt(timer / 60f);
+            int seconds = Mathf.FloorToInt(timer % 60f);
+            timerText.text = $"{minutes:00}:{seconds:00}";
+        }
     }
 
     public void SetRandomSafeColor()
@@ -57,29 +94,25 @@ public class MushroomManager : MonoBehaviour
         Debug.Log($"Nuevo color seguro seleccionado: {safeColor}");
     }
 
-    // Corrutina que hace que el hongo seguro parpadee.
     private System.Collections.IEnumerator BlinkSafeMushroom()
     {
         bool isBlinking = true;
 
-        // Obtén el hongo seguro y su color original.
+       
         GameObject safeMushroom = GetSafeMushroom();
         Renderer mushroomRenderer = safeMushroom.GetComponent<Renderer>();
         originalColor = mushroomRenderer.material.color;
 
         while (isBlinking)
         {
-            // Cambia el color a verde brillante.
             mushroomRenderer.material.color = Color.green;
             yield return new WaitForSeconds(0.5f);
 
-            // Vuelve al color original.
             mushroomRenderer.material.color = originalColor;
             yield return new WaitForSeconds(0.5f);
         }
     }
 
-    // Devuelve el hongo seguro basado en el color.
     private GameObject GetSafeMushroom()
     {
         foreach (GameObject mushroom in mushrooms)
@@ -95,21 +128,19 @@ public class MushroomManager : MonoBehaviour
 
     public void UpdateMushrooms()
     {
-        if (isGameOver) return; // Si el juego ha terminado, no hacemos nada.
+        if (isGameOver) return;
 
         foreach (GameObject mushroom in mushrooms)
         {
             if (mushroom.CompareTag(safeColor))
             {
                 Debug.Log($"{mushroom.name} es seguro, no baja.");
-                continue; // Este hongo es seguro.
+                continue;
             }
 
-            // Los hongos no seguros bajan.
             StartCoroutine(DropMushroom(mushroom));
         }
 
-        // Verifica la posición del jugador tras un corto tiempo.
         Invoke(nameof(CheckPlayerPosition), 1.5f);
     }
 
@@ -126,7 +157,7 @@ public class MushroomManager : MonoBehaviour
             yield return null;
         }
 
-        mushroom.transform.position = targetPosition; // Asegura la posición final.
+        mushroom.transform.position = targetPosition;
     }
 
     private void CheckPlayerPosition()
@@ -139,22 +170,20 @@ public class MushroomManager : MonoBehaviour
             return;
         }
 
-        // Verifica si el jugador está sobre el hongo seguro usando Raycast.
         if (IsPlayerOnSafeMushroom(safeMushroom))
         {
             Debug.Log("El jugador está a salvo. Reiniciando ronda...");
-            ResetMushrooms(); // Asegura que se reinicien los hongos.
+            ResetMushrooms();
         }
         else
         {
             Debug.Log("El jugador ha caído al agua. Fin del juego.");
-            EndGame(); // Llama a la función para finalizar el juego.
+            EndGame();
         }
     }
 
     private bool IsPlayerOnSafeMushroom(GameObject safeMushroom)
     {
-        // Dispara un rayo hacia abajo desde el centro del jugador.
         Ray ray = new Ray(player.position, Vector3.down);
         if (Physics.Raycast(ray, out RaycastHit hit, 2f))
         {
@@ -168,20 +197,16 @@ public class MushroomManager : MonoBehaviour
 
     private void ResetMushrooms()
     {
-        if (isGameOver) return; // Si el juego ha terminado, no hacemos nada.
+        if (isGameOver) return;
 
         Debug.Log("Reiniciando posición de los hongos...");
-
-        // Detiene todas las corrutinas activas para evitar conflictos.
         StopAllCoroutines();
 
-        // Llama a la animación de subida para cada hongo.
         foreach (GameObject mushroom in mushrooms)
         {
             StartCoroutine(RiseMushroom(mushroom));
         }
 
-        // Espera a que todas las animaciones de subida terminen antes de iniciar la siguiente ronda.
         StartCoroutine(WaitForRisingComplete());
     }
 
@@ -198,43 +223,61 @@ public class MushroomManager : MonoBehaviour
             yield return null;
         }
 
-        mushroom.transform.position = targetPosition; // Asegura la posición final.
+        mushroom.transform.position = targetPosition;
     }
 
     private System.Collections.IEnumerator WaitForRisingComplete()
     {
-        // Espera un tiempo para que las animaciones de subida terminen.
         yield return new WaitForSeconds(roundDelay);
-
-        // Inicia la siguiente ronda después del retraso.
         StartNextRound();
     }
 
-    // Detecta cuando el jugador toca el agua.
     private void OnTriggerEnter(Collider other)
     {
-        // Verifica si el objeto con el que el jugador colisiona es el agua.
+        // Verificar si el jugador tocó el agua.
         if (other.CompareTag("Water"))
         {
             Debug.Log("¡El jugador tocó el agua! Fin del juego.");
-            EndGame(); // Finaliza el juego.
+            EndGame();
         }
     }
 
-    // Finaliza el juego (puedes agregar más lógica aquí).
     private void EndGame()
     {
-        if (isGameOver) return; // Si el juego ya está terminado, no hacemos nada.
+        if (isGameOver) return;
 
-        isGameOver = true; // Establece que el juego ha terminado.
+        isGameOver = true;
+        Time.timeScale = 0f;
 
-        // Aquí puedes hacer que aparezca una UI de fin de juego o realizar cualquier otra acción.
-        if (gameOverUI != null)
+        // Reproducir el sonido de fin de juego
+        if (audioSource != null && gameOverSound != null)
         {
-            gameOverUI.SetActive(true); // Muestra una interfaz de fin de juego.
+            audioSource.PlayOneShot(gameOverSound); // Reproduce el sonido una vez
         }
 
-        // Detén el juego.
-        Time.timeScale = 0f; // Detiene el tiempo del juego (puedes usar esto para pausar el juego).
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true);
+        }
+    }
+
+    private void WinGame()
+    {
+        if (isGameOver) return;
+
+        isGameOver = true;
+        Time.timeScale = 0f;
+
+        if (audioSource != null && winSound != null)
+        {
+            audioSource.PlayOneShot(winSound); // Reproduce el sonido una vez
+        }
+
+        if (winUI != null)
+        {
+            winUI.SetActive(true);
+        }
+
+        Debug.Log("¡El jugador ganó el juego!");
     }
 }
